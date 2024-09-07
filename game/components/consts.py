@@ -1,0 +1,12 @@
+#Windows
+WINDOW_WIDHT =  800
+WINDOW_HEIGHT = 600
+#Player
+WIDHT_PLAYER =  20
+HEIGHT_PLAYER = 20
+COLOR_PLAYER = (255 , 0 , 0)
+COLOR_BG = (0 , 255 , 0)  
+#Frame Rate
+FPS = 60
+SPEED = 5
+
