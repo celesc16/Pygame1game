@@ -19,14 +19,14 @@ class Level:
         self.create_map()
 
     def create_map(self):
-        for row_index, row in enumerate(settings.WORLD_MAP):
-            for col_index, col in enumerate(row):
-                x = col_index * settings.TILESIZE
-                y = row_index * settings.TILESIZE
-                if col == 'x':
-                    Tile((x, y), [self.visible_sprites, self.obstacle_sprites])
-                if col == 'p':
-                    self.player = Player((x,y), [self.visible_sprites] , self.obstacle_sprites) 
+       # for row_index, row in enumerate(settings.WORLD_MAP):
+        #    for col_index, col in enumerate(row):
+         #       x = col_index * settings.TILESIZE
+          #      y = row_index * settings.TILESIZE
+           #     if col == 'x':
+            #        Tile((x, y), [self.visible_sprites, self.obstacle_sprites])
+             #   if col == 'p':
+        self.player = Player((400,300), [self.visible_sprites] , self.obstacle_sprites) 
 
     def run(self):
         # Actualiza y dibuja el juego
@@ -43,14 +43,22 @@ class YSortCameraGroup(pygame.sprite.Group):
         self.half_widht = self.display_surface.get_size()[0] // 2
         self.offset = pygame.math.Vector2()
 
+        # Creating the floar
+        self.floor_surf = pygame.image.load('./assets/image/around/map1.png').convert()
+        self.floor_rect = self.floor_surf.get_rect(topleft = (0 , 0 ))
 
     def custom_draw(self , player):
-        for sprite in self.sprites():
+        #for sprite in self.sprites():
 
             #getting the offset
             self.offset.x = player.rect.centerx - self.half_widht
             self.offset.y = player.rect.centery - self.half_height
 
-            for sprite in self.sprites():
+            #Drawing the floor
+            floor_offset_pos = self.floor_rect.topleft - self.offset
+            self.display_surface.blit(self.floor_surf , floor_offset_pos)
+
+            #for sprite in self.sprites():
+            for sprite in sorted(self.sprites() , key=lambda sprite: sprite.rect.centery ):
                 offset_pos = sprite.rect.topleft - self.offset
                 self.display_surface.blit(sprite.image , offset_pos)

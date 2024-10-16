@@ -1,6 +1,6 @@
 #WScreen
 SCREEN_WIDHT =  1200
-SCREEN_HEIGHT = 720
+SCREEN_HEIGHT = 700
 
 #Overlay position
 
